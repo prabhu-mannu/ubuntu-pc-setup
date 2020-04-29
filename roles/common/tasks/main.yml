@@ -1,0 +1,30 @@
+---
+# tasks file for common
+- name: update system
+  apt:
+    autoremove: yes # not required. If C(yes), remove unused dependency packages for all module states except I(build-dep). It can also be used as the only option.,Previous to version 2.4, autoclean was also an alias for autoremove, now it is its own separate command. See documentation for further information.
+    force: no # not required. Corresponds to the C(--force-yes) to I(apt-get) and implies C(allow_unauthenticated: yes),This option will disable checking both the packages' signatures and the certificates of the web servers they are downloaded from.,This option *is not* the equivalent of passing the C(-f) flag to I(apt-get) on the command line,**This is a destructive operation with the potential to destroy your system, and it should almost never be used.** Please also see C(man apt-get) for more information.
+    force_apt_get: no # not required. Force usage of apt-get instead of aptitude
+    update_cache: yes # not required. Run the equivalent of C(apt-get update) before the operation. Can be run as part of the package installation or as a separate step.
+
+- name: install packages
+  apt:
+    name:
+      - git
+      - apt-transport-https 
+      - ca-certificates 
+      - gnupg
+      - curl
+      - python3-dev
+      - python3-pip
+      - zsh
+      - openjdk-11-jdk
+      - vim
+      - fonts-hack-ttf
+      - font-manager
+      - fonts-powerline    
+    state: latest
+
+
+
+    

@@ -1,0 +1,11 @@
+---
+- hosts: local
+  connection: local
+  become: yes
+  
+  
+  roles:
+    - common
+    - vscode
+    - nodejs
+    - ohmyzsh
