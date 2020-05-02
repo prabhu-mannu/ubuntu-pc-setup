@@ -22,9 +22,23 @@
       - vim
       - fonts-hack-ttf
       - font-manager
-      - fonts-powerline    
+      - fonts-powerline
+      - xclip    
     state: latest
 
+- name: enable pbpaste alias
+  become: no
+  lineinfile:
+      path: ~/.zshrc # required. The file to modify.,Before 2.3 this option was only usable as I(dest), I(destfile) and I(name).
+      insertafter: EOF # not required. choices: EOF;*regex*. Used with C(state=present). If specified, the line will be inserted after the last match of specified regular expression. If the first match is required, use(firstmatch=yes). A special value is available; C(EOF) for inserting the line at the end of the file. If specified regular expression has no matches, EOF will be used instead. If regular expressions are passed to both C(regexp) and C(insertafter), C(insertafter) is only honored if no match for C(regexp) is found. May not be used with C(backrefs).
+      backup: yes # not required. Create a backup file including the timestamp information so you can get the original file back if you somehow clobbered it incorrectly.
+      line: "alias pbpaste='xclip -selection clipboard -o'" # not required. Required for C(state=present). The line to insert/replace into the file. If C(backrefs) is set, may contain backreferences that will get expanded with the C(regexp) capture groups if the regexp matches.
 
-
+- name: enable pbcopy alias
+  become: no
+  lineinfile:
+      path: ~/.zshrc # required. The file to modify.,Before 2.3 this option was only usable as I(dest), I(destfile) and I(name).
+      insertafter: EOF # not required. choices: EOF;*regex*. Used with C(state=present). If specified, the line will be inserted after the last match of specified regular expression. If the first match is required, use(firstmatch=yes). A special value is available; C(EOF) for inserting the line at the end of the file. If specified regular expression has no matches, EOF will be used instead. If regular expressions are passed to both C(regexp) and C(insertafter), C(insertafter) is only honored if no match for C(regexp) is found. May not be used with C(backrefs).
+      backup: yes # not required. Create a backup file including the timestamp information so you can get the original file back if you somehow clobbered it incorrectly.
+      line: "alias pbcopy='xclip -selection clipboard'" # not required. Required for C(state=present). The line to insert/replace into the file. If C(backrefs) is set, may contain backreferences that will get expanded with the C(regexp) capture groups if the regexp matches.
     
